@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         }
 
         User::query()->updateOrCreate(
-            ['email' => 'info@encodia.it'],
+            ['email' => 'info@example.com'],
             [
                 'name' => 'Encodia',
                 'email' => 'info@example.com',
