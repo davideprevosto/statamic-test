@@ -1,0 +1,45 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          localizable: false
+          validate:
+            - required
+      -
+        handle: content
+        field:
+          type: markdown
+          localizable: true
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          localizable: true
+      -
+        handle: category
+        field:
+          options:
+            1: Cosmetico
+            2: Farmaceutico
+            3: 'Medical Device'
+          inline: false
+          cast_booleans: false
+          default: '2'
+          display: Category
+          type: radio
+          icon: radio
+          instructions: 'Categoria prodotto'
+          localizable: false
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+          always_save: true
+title: Product

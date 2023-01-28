@@ -1,0 +1,36 @@
+title: QR
+fields:
+  -
+    handle: qr_code
+    field:
+      mode: list
+      container: qr
+      restrict: false
+      allow_uploads: false
+      show_filename: false
+      max_files: 1
+      display: 'QR code'
+      type: assets
+      icon: assets
+      instructions: 'Inquadra il QR code per visualizzare il contenuto'
+      localizable: false
+      listable: true
+      instructions_position: above
+      visibility: read_only
+      always_save: false
+      duplicate: false
+  -
+    handle: link
+    field:
+      input_type: url
+      character_limit: 255
+      antlers: true
+      display: Link
+      type: text
+      icon: text
+      instructions: 'Link per la consultazione dei QR code'
+      localizable: false
+      listable: hidden
+      instructions_position: above
+      visibility: read_only
+      always_save: false

@@ -1,0 +1,21 @@
+title: Leaflets
+sites:
+  - it
+  - de
+  - fr
+  - en
+propagate: false
+template: leaflets/show
+layout: layout
+taxonomies:
+  - product_categories
+revisions: false
+route: '/{parent_uri}/leaflets/{slug}'
+sort_dir: asc
+date_behavior:
+  past: public
+  future: private
+preview_targets:
+  -
+    label: Entry
+    url: '{permalink}'

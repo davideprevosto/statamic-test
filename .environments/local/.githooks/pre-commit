@@ -1,0 +1,66 @@
+#!/bin/bash
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+clear
+
+######################################
+############## Larastan ##############
+######################################
+
+echo -e "\n\n${GREEN} 🖥  Eseguo Larastan..."
+./vendor/bin/phpstan analyse --xdebug --memory-limit 1G
+
+exitCode=$?
+if [ $exitCode -ne 0 ]; then
+  echo -e "\n\n${RED}Larastan ha riscontrato degli errori! Commit NON EFFETTUATO${NC}\n\n"
+  exit $exitCode
+fi
+
+######################################
+############ PHP CS Fixer ############
+######################################
+
+echo -e "\n\n${GREEN} 🖥  Eseguo PHP CS Fixer..."
+CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM -- '*.php')
+if [ -n "$CHANGED_FILES" ]; then
+  composer fix $CHANGED_FILES
+  git add $CHANGED_FILES
+fi
+
+######################################
+######## Unit / Feature tests ########
+######################################
+
+echo -e "\n\n${GREEN} 🖥  Eseguo i test..."
+## Uncomment the following line and comment its next to run tests inside the container
+#docker exec variazioni-contrattuali_laravel.test_1 php artisan test --parallel --stop-on-failure
+php artisan test --parallel --stop-on-failure
+exitCode=$?
+
+if [ $exitCode -ne 0 ]; then
+  echo -e "\n\n${RED}I test falliscono! Commit NON EFFETTUATO${NC}\n\n"
+  exit $exitCode
+fi
+
+######################################
+############## Dusk tests ############
+######################################
+
+### Uncomment the following lines to run Dusk test, from here...
+#
+#echo -e "\n\n${GREEN} 👨🏻‍💻  Eseguo i test Dusk..."
+#php artisan dusk:chrome-driver --detect
+#php artisan dusk
+#exitCode=$?
+#
+#if [ $exitCode -ne 0 ]; then
+#  echo -e "\n\n${RED}I test Dusk falliscono! Commit NON EFFETTUATO${NC}\n\n"
+#  exit $exitCode
+#fi
+#### ...up here
+
+echo -e "${GREEN}Tutti i test passano${NC}\n\n"
+
+exit 0

@@ -1,0 +1,26 @@
+title: 'Leaflet - Cosmetic'
+fields:
+  -
+    handle: ingredients
+    field:
+      antlers: false
+      display: Ingredients
+      type: textarea
+      icon: textarea
+      localizable: false
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
+  -
+    handle: caveats
+    field:
+      antlers: false
+      display: Caveats
+      type: textarea
+      icon: textarea
+      localizable: false
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false

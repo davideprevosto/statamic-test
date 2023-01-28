@@ -1,0 +1,23 @@
+title: Products
+sites:
+  - it
+  - de
+  - en
+  - fr
+propagate: false
+template: products/show
+layout: layout
+revisions: false
+route:
+  it: '/prodotti/{slug}'
+  de: '/produkten/{slug}'
+  en: '/products/{slug}'
+  fr: '/produits/{slug}'
+sort_dir: asc
+date_behavior:
+  past: public
+  future: private
+preview_targets:
+  -
+    label: Entry
+    url: '{permalink}'

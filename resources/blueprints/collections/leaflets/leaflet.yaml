@@ -1,0 +1,82 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          localizable: false
+          validate:
+            - required
+      -
+        handle: product
+        field:
+          max_items: 1
+          mode: select
+          create: true
+          collections:
+            - products
+          display: Product
+          type: entries
+          icon: entries
+          instructions: 'Selezionare il prodotto associato al foglietto illustrativo'
+          localizable: false
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+          always_save: false
+      -
+        handle: grid_field
+        field:
+          fields:
+            -
+              import: leaflet_cosmetic
+          mode: stacked
+          max_rows: 1
+          min_rows: 1
+          reorderable: false
+          display: 'Grid Field'
+          type: grid
+          icon: grid
+          localizable: false
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+          always_save: false
+          if_any:
+            product: 'contains PLINEST®care Siero Viso'
+      -
+        handle: sections_cosmetic
+        field:
+          collapse: false
+          previews: true
+          max_sets: 1
+          sets:
+            new_set:
+              display: 'New Set'
+              fields:
+                -
+                  import: leaflet_cosmetic
+          display: 'Sezioni cosmetico'
+          type: replicator
+          icon: replicator
+          localizable: false
+          listable: true
+          instructions_position: above
+          visibility: visible
+          always_save: false
+          if:
+            product.blueprint.category.value: 'equals 1'
+      -
+        import: qr
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          localizable: true
+title: Leaflet
