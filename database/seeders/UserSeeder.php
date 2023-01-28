@@ -23,8 +23,8 @@ class UserSeeder extends Seeder
             ['email' => 'info@encodia.it'],
             [
                 'name' => 'Encodia',
-                'email' => 'info@encodia.it',
-                'password' => Hash::make('sviluppo'),
+                'email' => 'info@example.com',
+                'password' => Hash::make('abc'),
                 'email_verified_at' => now(),
                 'super' => 1,
                 'preferences' => [
